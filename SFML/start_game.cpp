@@ -101,7 +101,7 @@ int GameStart()
 }
 
 
-int SelectMode()
+int SelectModeSFML()
 {
     int version = 0;
 

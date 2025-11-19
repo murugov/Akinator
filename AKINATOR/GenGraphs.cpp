@@ -69,8 +69,6 @@ AkinErr_t GenGraphs(tree_t *tree, const char *func)
 {
     ON_DEBUG( if (IS_BAD_PTR(tree)) return AKIN_ERROR; )
 
-    system("rm -rf AKINATOR/ReportFiles/graphs");
-
     char folder[64] = {0};
     snprintf(folder, sizeof(folder), "mkdir -p AKINATOR/ReportFiles/graphs/graph%zu", number_graph);
     system(folder);

@@ -26,16 +26,6 @@ enum Verds
     NO  = 1
 };
 
-enum Modes
-{
-    FIND_MODE   = 111,
-    DEFINE_MODE = 222,
-    CMP_MODE    = 333
-};
-
-int GameStart();
-int SelectMode();
-int FindMode(const char* item);
 
 TextField* CreateTextField(float x, float y, float width, float height, sfFont* font);
 void TextFieldClick(TextField* field, int mouseX, int mouseY);
@@ -43,6 +33,10 @@ void TextFieldInput(TextField* field, sfEvent event);
 void DrawTextField(sfRenderWindow* window, TextField* field);
 const char* GetTextFieldText(TextField* field);
 void DestroyTextField(TextField* field);
+
+int GameStart();
+int SelectModeSFML();
+int FindMode(const char* item);
 
 void ShowResultScreen(sfRenderWindow* window, sfFont* font, const char* item, sfVector2u windowSize);
 void MakeDifferenceBetweenNodes(sfRenderWindow* window, sfFont* font, const char* item, node_t* new_node_for_ans, node_t* current_node, tree_t* tree, sfVector2u windowSize);

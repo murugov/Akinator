@@ -4,8 +4,6 @@
 #define PATH_TO_DATA    "AKINATOR/src/data.txt"
 
 
-// static int version = 0;
-
 int main()
 {
     LogFileOpener(PATH_TO_LOGFILE);
@@ -16,17 +14,18 @@ int main()
     DataReader(PATH_TO_DATA, akin_tree);
     GenGraphs(akin_tree, __func__);
 
-    GameStart();
+    Akinator(akin_tree);
 
-    int mode = SelectMode();
-    if (mode == FIND_MODE)
-        Akinator(akin_tree);
-    else if (mode == DEFINE_MODE)
-        GetNodeDef(akin_tree);
-    else if (mode == CMP_MODE)
-        NodesCompare(akin_tree);
+    // GameStart();
 
-    // GenGraphs(akin_tree, __func__);
+    // if (mode == FIND_MODE)
+    //     Akinator(akin_tree);
+    // else if (mode == DEFINE_MODE)
+    //     GetNodeDef(akin_tree);
+    // else if (mode == CMP_MODE)
+    //     NodesCompare(akin_tree);
+
+    GenGraphs(akin_tree, __func__);
 
     DataUpdate(PATH_TO_DATA, akin_tree);
 

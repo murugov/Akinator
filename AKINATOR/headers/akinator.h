@@ -3,13 +3,21 @@
 
 #include "tree.h"
 #include "colors.h"
-#include "sfml_func.h"
+#include "Speak.h"
+// #include "sfml_func.h"
 
 
 enum AkinErr_t
 {
     AKIN_SUCCESS = 0,
     AKIN_ERROR   = 1
+};
+
+enum Modes
+{
+    FIND_MODE   = 1,
+    DEFINE_MODE = 2,
+    CMP_MODE    = 3
 };
 
 
@@ -22,11 +30,16 @@ int NameNodeReader(char* cur_pos);
 AkinErr_t AkinCtor(tree_t **tree);
 AkinErr_t AkinDtor(tree_t *tree);
 
-node_t* NodeFind(const char* name, node_t *current);
-AkinErr_t GetNodeDef(tree_t *tree);
-AkinErr_t NodesCompare(tree_t *tree);
-
 AkinErr_t Akinator(tree_t *tree);
+AkinErr_t SelectMode(int mode, tree_t *tree);
+
+AkinErr_t FindMode(tree_t *tree);
+AkinErr_t DefineMode(tree_t *tree);
+AkinErr_t CmpMode(tree_t *tree);
+
+node_t* NodeFind(const char* name, node_t *current);
+AkinErr_t PathFinder(const char* name, tree_t *tree, stk_t<node_t*> *path);
+
 
 AkinErr_t GenHTML();
 AkinErr_t GenGraphs(tree_t *tree, const char *func);

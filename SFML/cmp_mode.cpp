@@ -2,29 +2,6 @@
 #include "akinator.h"
 
 
-AkinErr_t PathFinder(const char* name, tree_t *tree, stk_t<node_t*> *path)
-{
-    ON_DEBUG( if (IS_BAD_PTR(name) || IS_BAD_PTR(tree) || IS_BAD_PTR(path)) return AKIN_ERROR; )
-
-    node_t *found = NodeFind(name, tree->root);
-    if (found == NULL) return AKIN_ERROR;
-
-
-    node_t *parent = found->parent;
-    node_t *child  = found;
-
-    StackPush(path, child);
-    while (parent != NULL)
-    {
-        StackPush(path, parent);
-        parent = parent->parent;
-        child  = child->parent;
-    }
-    
-    return AKIN_SUCCESS;
-}
-
-
 void ShowComparisonScreen(sfRenderWindow* window, sfFont* font, const char* name_1, const char* name_2, 
                          const char* comparison, sfVector2u windowSize)
 {
@@ -186,6 +163,7 @@ void ShowComparisonScreen(sfRenderWindow* window, sfFont* font, const char* name
     if (music) sfMusic_destroy(music);
 }
 
+
 char* BuildComparisonString(const char* name_1, const char* name_2, tree_t* tree)
 {
     if (!name_1 || !name_2 || !tree) return NULL;
@@ -203,7 +181,7 @@ char* BuildComparisonString(const char* name_1, const char* name_2, tree_t* tree
         return NULL;
     }
 
-    char* comparison = (char*)calloc(1024, sizeof(char));
+    char* comparison = (char*)calloc(1024, sizeof(char)); // 1024
     if (!comparison)
     {
         STACK_DTOR(&path_1);
